@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class GameController : MonoBehaviour
     private bool isGameover;
     private int m_score;
     UIManager m_ui;
+    [SerializeField] private Button _pause;
+    [SerializeField] private Button _play;
     void Start()
     {
         m_ui = FindObjectOfType<UIManager>();
@@ -82,5 +85,13 @@ public class GameController : MonoBehaviour
     public void PauseGame()
     {
         Time.timeScale = 0;
+        _pause.gameObject.SetActive(false);
+        _play.gameObject.SetActive(true);
+    }    
+    public void PlayGame()
+    {
+        Time.timeScale = 1;
+        _play.gameObject.SetActive(false);
+        _pause.gameObject.SetActive(true);
     }    
 }
